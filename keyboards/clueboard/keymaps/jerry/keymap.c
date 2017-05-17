@@ -11,8 +11,9 @@
 // entirely and just use numbers.
 #define _WL 0
 #define _ML 1
-#define _FL 2
-#define _RL 3
+#define _WF 2
+#define _MF 3
+#define _RL 4
 
 #define CAPS_FN LT(_RL, KC_CAPS)
 
@@ -24,9 +25,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSPC,                   KC_DEL,  \
   KC_LCTL, KC_A,    KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,    KC_SCLN,  KC_QUOT,  XXXXXXX,  KC_ENT,                             \
   KC_LSFT, XXXXXXX, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM, KC_DOT,   KC_SLSH,  XXXXXXX,  KC_RSFT,          KC_UP,            \
-  CAPS_FN, KC_LGUI, KC_LALT,XXXXXXX,                XXXXXXX,KC_SPC,                  XXXXXXX,  KC_RALT,  KC_RCTL,  MO(_FL), KC_LEFT, KC_DOWN, KC_RGHT),
+  CAPS_FN, KC_LGUI, KC_LALT,XXXXXXX,                XXXXXXX,KC_SPC,                  XXXXXXX,  KC_RALT,  KC_RCTL,  F(4),    KC_LEFT, KC_DOWN, KC_RGHT),
 
-  /* Keymap _ML: Mac Layer
+  /* Keymap _ML + _WL: Mac Layer
    */
 [_ML] = KEYMAP(
   _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  _______,  _______, _______,          _______, \
@@ -35,14 +36,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, XXXXXXX, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          _______,          \
   _______, KC_LALT, KC_LGUI,XXXXXXX,                XXXXXXX,_______,                 XXXXXXX,  KC_RGUI,  KC_RALT,  _______, _______, _______, _______),
 
-  /* Keymap _FL: Function Layer
+  /* Keymap _WF: Windows Function Layer
    */
-[_FL] = KEYMAP(
-  KC_GRV,  KC_F1,   KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,   KC_F10,   KC_F11,   F(1),     KC_F13 , KC_F14,           KC_F15,  \
-  _______, _______, _______,_______,_______,_______,_______,_______,KC_PSCR,KC_SLCK, KC_PAUS,  KC_VOLD,  KC_VOLU,  KC_MUTE,                   F(4),    \
-  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  KC_MPLY,                            \
+[_WF] = KEYMAP(
+  KC_GRV,  KC_F1,   KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,   KC_F10,   KC_F11,   F(1),     KC_F13,  KC_F14,           KC_F15,  \
+  _______, _______, _______,_______,_______,_______,_______,_______,KC_PSCR,KC_SLCK, KC_PAUS,  KC_VOLD,  KC_VOLU,  KC_MUTE,                   F(5),    \
+  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  F(7),     XXXXXXX,  KC_MPLY,                            \
   _______, XXXXXXX, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          KC_PGUP,          \
   _______, _______, _______,XXXXXXX,                XXXXXXX,_______,                 XXXXXXX,  _______,  KC_APP,   _______, KC_HOME, KC_PGDN, KC_END),
+
+  /* Keymap _MF + _WF: Mac Function Layer
+   */
+[_MF] = KEYMAP(
+  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  KC_F12,   _______, _______,          _______, \
+  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  _______,  _______,                   F(6),    \
+  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  F(8),     XXXXXXX,  _______,                            \
+  _______, XXXXXXX, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          _______,          \
+  _______, _______, _______,XXXXXXX,                XXXXXXX,_______,                 XXXXXXX,  _______,  _______,  _______, _______, _______, _______),
 
   /* Keymap _RL: RGB layer
    */
@@ -58,11 +68,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    of this list.
  */
 const uint16_t PROGMEM fn_actions[] = {
-  [0] = ACTION_FUNCTION(0),
-  [1] = ACTION_FUNCTION(1),
+  [0] = ACTION_FUNCTION(0), // Grave/Esc
+  [1] = ACTION_FUNCTION(1), // F12 during boot
   [2] = ACTION_FUNCTION(2), // Swap to Windows mode
   [3] = ACTION_FUNCTION(3), // Swap to Mac mode
-  [4] = ACTION_MODS_KEY(MOD_LCTL | MOD_LSFT, KC_ESC), // Task Manager
+  [4] = ACTION_FUNCTION(4), // FN Layers
+  [5] = ACTION_MODS_KEY(MOD_LCTL | MOD_LSFT, KC_ESC), // Task Manager
+  [6] = ACTION_MODS_KEY(MOD_LALT | MOD_LGUI, KC_ESC), // Force Quit
+  [7] = ACTION_MODS_KEY(MOD_LGUI | MOD_LSFT, KC_S), // Windows screen grab to clipboard
+  [8] = ACTION_MODS_KEY(MOD_LCTL | MOD_LGUI | MOD_LSFT, KC_4), // Mac screen grab to clipboard
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
@@ -103,6 +117,9 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
        */
       if (timer_read32() < 15000) {
         default_layer_set(1 << _ML);
+        if (layer_state & (1 << _WF)) {
+          layer_on(_MF);
+        }
       }
       if (record->event.pressed) {
         add_key(KC_F12);
@@ -117,6 +134,12 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
       break;
     case 3:
       default_layer_set(1 << _ML);
+      break;
+    case 4:
+      layer_invert(_WF);
+      if (default_layer_state == (1 << _ML)) {
+        layer_invert(_MF);
+      }
       break;
   }
 }
