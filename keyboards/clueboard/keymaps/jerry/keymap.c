@@ -10,12 +10,14 @@
 // Layer names don't all need to be of the same length, obviously, and you can also skip them
 // entirely and just use numbers.
 #define _WL 0
-#define _ML 1
-#define _WF 2
-#define _MF 3
-#define _RL 4
+#define _GL 1
+#define _ML 2
+#define _WF 3
+#define _MF 4
+#define _CL 5
+#define _GC 6
 
-#define CAPS_FN LT(_RL, KC_CAPS)
+#define CAPS_FN LT(_CL, KC_CAPS)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap _WL: Windows Layer (Default)
@@ -26,6 +28,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_LCTL, KC_A,    KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,    KC_SCLN,  KC_QUOT,  XXXXXXX,  KC_ENT,                             \
   KC_LSFT, XXXXXXX, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM, KC_DOT,   KC_SLSH,  XXXXXXX,  KC_RSFT,          KC_UP,            \
   CAPS_FN, KC_LGUI, KC_LALT,XXXXXXX,                XXXXXXX,KC_SPC,                  XXXXXXX,  KC_RALT,  KC_RCTL,  F(4),    KC_LEFT, KC_DOWN, KC_RGHT),
+
+  /* Keymap _GL + _WL: MMO Layer
+   */
+[_GL] = KEYMAP(
+  _______, F(9),    F(9),   F(9),   F(9),   F(9),   _______,_______,_______,_______, _______,  _______,  _______,  _______, _______,          _______, \
+  _______, F(9),    _______,F(9),   F(9),   _______,_______,_______,_______,_______, _______,  _______,  _______,  _______,                   _______, \
+  _______, _______, _______,_______,F(9),   _______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,                            \
+  _______, XXXXXXX, F(9),   F(9),   F(9),   F(9),   _______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          _______,          \
+  _______, _______, _______,XXXXXXX,                XXXXXXX,_______,                 XXXXXXX,  _______,  _______,  _______, _______, _______, _______),
+
+  /* Keymap _GC: MMO Ctrl Layer (Only accessed through action_function)
+   */
+[_GC] = KEYMAP(
+  _______, KC_F1,   KC_F2,  KC_F3,  KC_F4,  KC_F5,  _______,_______,_______,_______, _______,  _______,  _______,  _______, _______,          _______, \
+  _______, KC_F6,   _______,KC_F7,  KC_F8,  _______,_______,_______,_______,_______, _______,  _______,  _______,  _______,                   _______, \
+  _______, _______, _______,_______,KC_F9,  _______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,                            \
+  _______, XXXXXXX, KC_F10, KC_F11, KC_F12, KC_F13, _______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          _______,          \
+  _______, _______, _______,XXXXXXX,                XXXXXXX,_______,                 XXXXXXX,  _______,  _______,  _______, _______, _______, _______),
 
   /* Keymap _ML + _WL: Mac Layer
    */
@@ -52,14 +72,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  _______,  _______,                   F(6),    \
   _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  F(8),     XXXXXXX,  _______,                            \
   _______, XXXXXXX, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          _______,          \
-  _______, _______, _______,XXXXXXX,                XXXXXXX,_______,                 XXXXXXX,  _______,  _______,  _______, _______, _______, _______),
+  _______, _______, _______,XXXXXXX,                XXXXXXX,_______,                 XXXXXXX,  _______,  KC_RALT,  _______, _______, _______, _______),
 
-  /* Keymap _RL: RGB layer
+  /* Keymap _CL: Config layer
    */
-[_RL] = KEYMAP(
+[_CL] = KEYMAP(
   _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  _______,  _______, RGB_TOG,          RGB_VAI, \
   _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  _______,  _______,                   RGB_VAD, \
-  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,                            \
+  TG(_GL), _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,                            \
   _______, XXXXXXX, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          RGB_SAI,          \
   _______, F(2),    F(3),   XXXXXXX,                XXXXXXX,RGB_MOD,                 XXXXXXX,  _______,  _______,  _______, RGB_HUD, RGB_SAD, RGB_HUI),
 };
@@ -77,6 +97,8 @@ const uint16_t PROGMEM fn_actions[] = {
   [6] = ACTION_MODS_KEY(MOD_LALT | MOD_LGUI, KC_ESC), // Force Quit
   [7] = ACTION_MODS_KEY(MOD_LGUI | MOD_LSFT, KC_S), // Windows screen grab to clipboard
   [8] = ACTION_MODS_KEY(MOD_LCTL | MOD_LGUI | MOD_LSFT, KC_4), // Mac screen grab to clipboard
+  [9] = ACTION_FUNCTION(9), // MMO Function Keys
+
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
@@ -141,5 +163,31 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
         layer_invert(_MF);
       }
       break;
+    case 9: {
+      uint16_t mmo_key = keymap_key_to_keycode(_GC, (keypos_t){.row = record->event.key.row, .col = record->event.key.col});
+      uint16_t base_key = keymap_key_to_keycode(_WL, (keypos_t){.row = record->event.key.row, .col = record->event.key.col});
+      if (get_mods() & MOD_BIT(KC_LCTRL)) {
+        del_mods(MOD_LCTL);
+        if (record->event.pressed) {
+          add_key(mmo_key);
+          send_keyboard_report();
+        } else {
+          del_key(mmo_key);
+          del_key(base_key);
+          send_keyboard_report();
+        }
+        add_mods(MOD_LCTL);
+      } else {
+        if (record->event.pressed) {
+          add_key(base_key);
+          send_keyboard_report();
+        } else {
+          del_key(mmo_key);
+          del_key(base_key);
+          send_keyboard_report();
+        }
+      }
+      break;
+    }
   }
 }
