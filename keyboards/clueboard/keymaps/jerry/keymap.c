@@ -27,15 +27,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,   KC_E,   KC_R,   KC_T,   KC_Y,   KC_U,   KC_I,   KC_O,    KC_P,     KC_LBRC,  KC_RBRC,  KC_BSPC,                   KC_DEL,  \
   KC_LCTL, KC_A,    KC_S,   KC_D,   KC_F,   KC_G,   KC_H,   KC_J,   KC_K,   KC_L,    KC_SCLN,  KC_QUOT,  XXXXXXX,  KC_ENT,                             \
   KC_LSFT, XXXXXXX, KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_N,   KC_M,   KC_COMM, KC_DOT,   KC_SLSH,  XXXXXXX,  KC_RSFT,          KC_UP,            \
-  CAPS_FN, KC_LGUI, KC_LALT,XXXXXXX,                XXXXXXX,KC_SPC,                  XXXXXXX,  KC_RALT,  KC_RCTL,  F(4),    KC_LEFT, KC_DOWN, KC_RGHT),
+  CAPS_FN, KC_LGUI, KC_LALT,XXXXXXX,                XXXXXXX,KC_SPC,                  XXXXXXX,  KC_RALT,  KC_RCTL,  F(2),    KC_LEFT, KC_DOWN, KC_RGHT),
 
   /* Keymap _GL + _WL: MMO Layer
    */
 [_GL] = KEYMAP(
-  _______, F(9),    F(9),   F(9),   F(9),   F(9),   _______,_______,_______,_______, _______,  _______,  _______,  _______, _______,          _______, \
-  _______, F(9),    _______,F(9),   F(9),   _______,_______,_______,_______,_______, _______,  _______,  _______,  _______,                   _______, \
-  _______, _______, _______,_______,F(9),   _______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,                            \
-  _______, XXXXXXX, F(9),   F(9),   F(9),   F(9),   _______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          _______,          \
+  _______, F(7),    F(7),   F(7),   F(7),   F(7),   _______,_______,_______,_______, _______,  _______,  _______,  _______, _______,          _______, \
+  _______, F(7),    _______,F(7),   F(7),   _______,_______,_______,_______,_______, _______,  _______,  _______,  _______,                   _______, \
+  _______, _______, _______,_______,F(7),   _______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,                            \
+  _______, XXXXXXX, F(7),   F(7),   F(7),   F(7),   _______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          _______,          \
   _______, _______, _______,XXXXXXX,                XXXXXXX,_______,                 XXXXXXX,  _______,  _______,  _______, _______, _______, _______),
 
   /* Keymap _GC: MMO Ctrl Layer (Only accessed through action_function)
@@ -60,8 +60,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
 [_WF] = KEYMAP(
   KC_GRV,  KC_F1,   KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_F13,  KC_F14,           KC_F15,  \
-  _______, _______, _______,_______,_______,_______,_______,_______,KC_PSCR,KC_SLCK, KC_PAUS,  KC_VOLD,  KC_VOLU,  KC_MUTE,                   F(5),    \
-  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  F(7),     XXXXXXX,  KC_MPLY,                            \
+  _______, _______, _______,_______,_______,_______,_______,_______,KC_PSCR,KC_SLCK, KC_PAUS,  KC_VOLD,  KC_VOLU,  KC_MUTE,                   F(3),    \
+  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  F(5),     XXXXXXX,  KC_MPLY,                            \
   _______, XXXXXXX, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          KC_PGUP,          \
   _______, _______, _______,XXXXXXX,                XXXXXXX,_______,                 XXXXXXX,  _______,  KC_APP,   _______, KC_HOME, KC_PGDN, KC_END),
 
@@ -69,8 +69,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    */
 [_MF] = KEYMAP(
   _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  _______,  _______, _______,          _______, \
-  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  _______,  _______,                   F(6),    \
-  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  F(8),     XXXXXXX,  _______,                            \
+  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  _______,  _______,                   F(4),    \
+  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  F(6),     XXXXXXX,  _______,                            \
   _______, XXXXXXX, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          _______,          \
   _______, _______, _______,XXXXXXX,                XXXXXXX,_______,                 XXXXXXX,  _______,  KC_RALT,  _______, _______, _______, _______),
 
@@ -81,39 +81,39 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  _______,  _______,                   RGB_VAD, \
   TG(_GL), _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,                            \
   _______, XXXXXXX, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          RGB_SAI,          \
-  _______, F(2),    F(3),   XXXXXXX,                XXXXXXX,RGB_MOD,                 XXXXXXX,  _______,  _______,  _______, RGB_HUD, RGB_SAD, RGB_HUI),
+  _______, F(0),    F(1),   XXXXXXX,                XXXXXXX,RGB_MOD,                 XXXXXXX,  _______,  _______,  _______, RGB_HUD, RGB_SAD, RGB_HUI),
 };
 
 /* This is a list of user defined functions. F(N) corresponds to item N
    of this list.
  */
 const uint16_t PROGMEM fn_actions[] = {
-  [2] = ACTION_FUNCTION(2), // Swap to Windows mode
-  [3] = ACTION_FUNCTION(3), // Swap to Mac mode
-  [4] = ACTION_FUNCTION(4), // FN Layers
-  [5] = ACTION_MODS_KEY(MOD_LCTL | MOD_LSFT, KC_ESC), // Task Manager
-  [6] = ACTION_MODS_KEY(MOD_LALT | MOD_LGUI, KC_ESC), // Force Quit
-  [7] = ACTION_MODS_KEY(MOD_LGUI | MOD_LSFT, KC_S), // Windows screen grab to clipboard
-  [8] = ACTION_MODS_KEY(MOD_LCTL | MOD_LGUI | MOD_LSFT, KC_4), // Mac screen grab to clipboard
-  [9] = ACTION_FUNCTION(9), // MMO Function Keys
+  [0] = ACTION_FUNCTION(0), // Swap to Windows mode
+  [1] = ACTION_FUNCTION(1), // Swap to Mac mode
+  [2] = ACTION_FUNCTION(2), // FN Layers
+  [3] = ACTION_MODS_KEY(MOD_LCTL | MOD_LSFT, KC_ESC), // Task Manager
+  [4] = ACTION_MODS_KEY(MOD_LALT | MOD_LGUI, KC_ESC), // Force Quit
+  [5] = ACTION_MODS_KEY(MOD_LGUI | MOD_LSFT, KC_S), // Windows screen grab to clipboard
+  [6] = ACTION_MODS_KEY(MOD_LCTL | MOD_LGUI | MOD_LSFT, KC_4), // Mac screen grab to clipboard
+  [7] = ACTION_FUNCTION(7), // MMO Function Keys
 
 };
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
   switch (id) {
-    case 2:
+    case 0:
       default_layer_set(1 << _WL);
       break;
-    case 3:
+    case 1:
       default_layer_set(1 << _ML);
       break;
-    case 4:
+    case 2:
       layer_invert(_WF);
       if (default_layer_state == (1 << _ML)) {
         layer_invert(_MF);
       }
       break;
-    case 9: {
+    case 7: {
       uint16_t mmo_key = keymap_key_to_keycode(_GC, (keypos_t){.row = record->event.key.row, .col = record->event.key.col});
       uint16_t base_key = keymap_key_to_keycode(_WL, (keypos_t){.row = record->event.key.row, .col = record->event.key.col});
       if (get_mods() & MOD_BIT(KC_LCTRL)) {
