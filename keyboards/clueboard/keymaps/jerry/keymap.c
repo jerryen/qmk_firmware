@@ -59,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap _WF: Windows Function Layer
    */
 [_WF] = KEYMAP(
-  KC_GRV,  KC_F1,   KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,   KC_F10,   KC_F11,   F(1),     KC_F13,  KC_F14,           KC_F15,  \
+  KC_GRV,  KC_F1,   KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_F9,   KC_F10,   KC_F11,   KC_F12,   KC_F13,  KC_F14,           KC_F15,  \
   _______, _______, _______,_______,_______,_______,_______,_______,KC_PSCR,KC_SLCK, KC_PAUS,  KC_VOLD,  KC_VOLU,  KC_MUTE,                   F(5),    \
   _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  F(7),     XXXXXXX,  KC_MPLY,                            \
   _______, XXXXXXX, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          KC_PGUP,          \
@@ -68,7 +68,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /* Keymap _MF + _WF: Mac Function Layer
    */
 [_MF] = KEYMAP(
-  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  KC_F12,   _______, _______,          _______, \
+  _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  _______,  _______, _______,          _______, \
   _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  _______,  _______,                   F(6),    \
   _______, _______, _______,_______,_______,_______,_______,_______,_______,_______, _______,  F(8),     XXXXXXX,  _______,                            \
   _______, XXXXXXX, _______,_______,_______,_______,_______,_______,_______,_______, _______,  _______,  XXXXXXX,  _______,          _______,          \
@@ -88,7 +88,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    of this list.
  */
 const uint16_t PROGMEM fn_actions[] = {
-  [1] = ACTION_FUNCTION(1), // F12 during boot
   [2] = ACTION_FUNCTION(2), // Swap to Windows mode
   [3] = ACTION_FUNCTION(3), // Swap to Mac mode
   [4] = ACTION_FUNCTION(4), // FN Layers
@@ -102,23 +101,6 @@ const uint16_t PROGMEM fn_actions[] = {
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
   switch (id) {
-    case 1:
-      /* Set to Mac layer if F12 was used within 15 seconds of powering on
-       */
-      if (timer_read32() < 15000) {
-        default_layer_set(1 << _ML);
-        if (layer_state & (1 << _WF)) {
-          layer_on(_MF);
-        }
-      }
-      if (record->event.pressed) {
-        add_key(KC_F12);
-        send_keyboard_report();
-      } else {
-        del_key(KC_F12);
-        send_keyboard_report();
-      }
-      break;
     case 2:
       default_layer_set(1 << _WL);
       break;
