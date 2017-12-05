@@ -1,4 +1,4 @@
-#include "clueboard.h"
+#include "66.h"
 
 // Helpful defines
 #define GRAVE_MODS (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT) | MOD_BIT(KC_LCTRL))
